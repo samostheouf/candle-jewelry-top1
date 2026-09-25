@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#1c1917"/>
+  <rect x="0" y="0" width="1200" height="4" fill="#fbbf24"/>
+  <text x="600" y="140" font-family="Georgia, serif" font-style="italic" font-size="72" fill="#fbbf24" text-anchor="middle">Bougie Bijou Luxe</text>
+  <text x="600" y="200" font-family="Georgia, serif" font-size="24" fill="#d6d3d1" text-anchor="middle">Parfum d'Exception de Grasse</text>
+  <text x="600" y="240" font-family="system-ui, sans-serif" font-size="18" fill="#a8a29e" text-anchor="middle">40h · Bijou gravé · Cire naturelle · Livraison 7j</text>
+  <text x="600" y="290" font-family="system-ui, sans-serif" font-size="28" fill="#fff" text-anchor="middle" font-weight="500">59.90€</text>
+  <text x="600" y="318" font-family="system-ui, sans-serif" font-size="16" fill="#ef4444" text-anchor="middle" text-decoration="line-through">79.90€</text>
+  <text x="600" y="348" font-family="system-ui, sans-serif" font-size="18" fill="#f59e0b" text-anchor="middle">-25% · Coffret offert</text>
+  <line x1="500" y1="380" x2="700" y2="380" stroke="#fbbf24" stroke-width="2"/>
+  <text x="600" y="410" font-family="system-ui, sans-serif" font-size="16" fill="#d6d3d1" text-anchor="middle">CANDLE — Bougie Bijou Luxe</text>
+  <text x="600" y="435" font-family="system-ui, sans-serif" font-size="14" fill="#78716c" text-anchor="middle">candle-jewelry-top1.vercel.app</text>
+  <text x="600" y="610" font-family="system-ui, sans-serif" font-size="14" fill="#57534e" text-anchor="middle">★ ★ ★ ★ ★ — 2 000+ bougies offertes</text>
+</svg>

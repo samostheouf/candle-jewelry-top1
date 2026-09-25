@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Ne pas indexer les pages de test ou générées dynamiquement
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 10
+
+Sitemap: https://candle-jewelry-top1.vercel.app/sitemap.xml
