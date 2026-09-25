@@ -1,3 +1,5 @@
+'use client'
+
 export const metadata = {
   title: 'Contact — CANDLE',
   description: 'Contactez CANDLE pour toute question sur nos bougies bijou luxe. contact@candle-jewelry.fr — réponse sous 24h.',
