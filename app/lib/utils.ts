@@ -1,12 +1,14 @@
-export function formatPrice(price: number): string {
+export function formatPrice(amount: number): string {
   return new Intl.NumberFormat('fr-FR', {
     style: 'currency',
     currency: 'EUR',
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  }).format(price);
+  }).format(amount)
 }
 
-export function formatPriceInt(cents: number): string {
-  return formatPrice(cents / 100);
+export function formatNumber(num: number): string {
+  return new Intl.NumberFormat('fr-FR').format(num)
+}
+
+export function cn(...classes: (string | boolean)[]): string {
+  return classes.filter(Boolean).join(' ')
 }
