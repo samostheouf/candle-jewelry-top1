@@ -1,29 +1,7 @@
 const nextConfig = {
-  // Termux (Android aarch64) : @next/swc-android-arm64 manquant
-  // SWC WASM crash sur Node 26+Termux → basculer vers Babel + Terser
-  experimental: {
-    useWasmBinary: true,
-  },
   swcMinify: false,
   compiler: {
-    // Babel compilation — utilisé quand SWC est désactivé
-    babel: async (content, options) => {
-      const babel = require("@babel/core")
-      const result = await babel.transformAsync(content, {
-        ...options,
-        presets: [
-          ["@babel/preset-env", { targets: { node: "current" } }],
-          "@babel/preset-react",
-          "@babel/preset-typescript",
-        ],
-        sourceType: "module",
-        retainLines: true,
-        compact: false,
-        babelrc: false,
-        configFile: false,
-      })
-      return result.code
-    },
+    removeConsole: false,
   },
   async headers() {
     return [{

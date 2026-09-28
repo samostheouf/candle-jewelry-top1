@@ -4,10 +4,12 @@ import { createHash } from 'crypto'
 
 export const dynamic = 'force-dynamic'
 
-const PRODUCT_NAME = 'Bougie Bijou Luxe'
+// ── Données produit — identité luxe ──────────────────────────────────────────
+const PRODUCT_NAME = 'Bougie Bijou de Grasse'
 const PRODUCT_DESCRIPTION =
-  "Bougie parfumée bijou luxe. Parfum d'exception de Grasse, design bijou gravé au laser, cire de colza naturelle, 40h de combustion. Livraison 7 jours, 14j satisfait ou remboursé."
+  'Bougie parfumée d\'exception de Grasse, avec bijou gravé au laser en acier inoxydable. Cire de colza naturelle, 40h de combustion. Livraison 7 jours. 14j satisfait ou remboursé.'
 const CURRENCY = 'eur'
+
 const COUNTRIES = [
   'FR', 'DE', 'IT', 'ES', 'GB', 'US', 'JP', 'CH',
   'BE', 'NL', 'CA', 'AU', 'SG', 'AE', 'HK', 'KR',
@@ -19,11 +21,12 @@ const PRICES: Record<string, number> = {
 }
 
 const PROMO_CODES: Record<string, { discount: number; description: string }> = {
-  LANCEMENT30: { discount: 0.30, description: 'Offre de lancement -30%' },
-  LAUNCH30:   { discount: 0.30, description: 'Launch discount -30%' },
-  BIENVENUE20: { discount: 0.20, description: 'Bienvenue -20%' },
+  LANCEMENT30:  { discount: 0.30, description: 'Offre de lancement —30%' },
+  LAUNCH30:    { discount: 0.30, description: 'Launch discount —30%' },
+  BIENVENUE20: { discount: 0.20, description: 'Bienvenue —20%' },
 }
 
+// ── Résolution du prix selon le variant ─────────────────────────────────────
 function resolvePrice(body: Record<string, unknown>): { label: string; amount: number } {
   const variant = (body.variant as string) ?? (body.bundle as string) ?? 'unit'
   if (variant === 'bundle' || body.bundle === true) {
@@ -32,6 +35,7 @@ function resolvePrice(body: Record<string, unknown>): { label: string; amount: n
   return { label: 'Bougie unique', amount: PRICES.unit }
 }
 
+// ── Application du code promo ────────────────────────────────────────────────
 function applyPromo(amount: number, promoCode?: string): { finalAmount: number; discountDescription: string | null } {
   if (!promoCode) return { finalAmount: amount, discountDescription: null }
   const promo = PROMO_CODES[promoCode.toUpperCase()]
@@ -40,6 +44,7 @@ function applyPromo(amount: number, promoCode?: string): { finalAmount: number; 
   return { finalAmount, discountDescription: promo.description }
 }
 
+// ── POST /api/checkout ───────────────────────────────────────────────────────
 export async function POST(request: NextRequest) {
   try {
     const body = (await request.json().catch(() => ({}))) as Record<string, unknown>
@@ -59,6 +64,7 @@ export async function POST(request: NextRequest) {
       (process.env.NEXT_PUBLIC_APP_URL as string) ||
       'https://candle-jewelry-top1.vercel.app'
 
+    // Clé d'idempotence — évite les doubles charges Stripe
     const idempotencyKey = createHash('sha256')
       .update(`${email}:candle:${Math.floor(Date.now() / 3600000)}`)
       .digest('hex')
@@ -97,7 +103,7 @@ export async function POST(request: NextRequest) {
           discountDescription: discountDescription || '',
           referralCode: referralCode || '',
           affiliateCode: affiliateCode || '',
-          source: 'candle-checkout-api',
+          source: 'candle-checkout-api-luxe',
           email,
         } as any,
         shipping_address_collection: { allowed_countries: COUNTRIES as any },
@@ -127,6 +133,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// ── GET /api/checkout — endpoint de découverte ───────────────────────────────
 export async function GET() {
   return NextResponse.json({
     success: true,

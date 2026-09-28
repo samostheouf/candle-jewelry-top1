@@ -1,4 +1,4 @@
-import { JSONLD } from '@/components/JSONLD'
+import { ProductJSONLD } from '@/components/JSONLD'
 import BuyButton from '@/components/BuyButton'
 
 export const metadata = {
@@ -41,13 +41,8 @@ const productSchema = {
     availability: 'https://schema.org/InStock',
     itemCondition: 'https://schema.org/NewCondition',
   },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '2000',
-    bestRating: '5',
-    worstRating: '1',
-  },
+  // ⚠️ Pas d'aggregateRating : aucune vente réelle enregistrée.
+  // Note inventée = fausse publicité + risque de signalement Stripe.
   hasMerchantReturnPolicy: {
     '@type': 'MerchantReturnPolicy',
     returnsWithin: 'P14D',
@@ -100,7 +95,7 @@ const certifications = [
   { label: 'Cire de colza', sub: 'Végétale — France' },
   { label: '40h de combustion', sub: 'Longue tenue' },
   { label: 'Bijou gravé au laser', sub: 'Acier inoxydable' },
-  { label: 'Livraison 7 jours', sub: 'Sous 48h' },
+  { label: 'Livraison 7 jours', sub: 'Expédition France' },
   { label: '14j satisfait ou remboursé', sub: 'Retour gratuit' },
   { label: 'Coffret cadeau offert', sub: 'Luxe' },
   { label: 'Emballage premium', sub: 'Prêt à offrir' },
@@ -284,7 +279,7 @@ export default function Produits() {
 
             <div className="mt-6 p-4 bg-stone-50 rounded-xl border border-stone-200">
               <p className="text-sm text-stone-500">
-                📊 <strong className="text-stone-700">Marge nette</strong> : 42.6€ — 71% de marge
+                <strong className="text-stone-700">Parfum d'exception de Grasse</strong> — fragrance ambrée, boisée et vanilleuse, créée par des nose d'exception.
               </p>
             </div>
 
@@ -318,12 +313,12 @@ export default function Produits() {
                 </div>
                 <span className="text-3xl font-light text-stone-800">59.90€</span>
               </div>
-              <button
-                onClick={() => (window.location.href = '/?bundle=1#produit')}
-                className="mt-4 w-full bg-stone-200 hover:bg-stone-300 text-stone-700 font-medium px-6 py-3 rounded-lg transition-colors"
+              <a
+                href="/?bundle=1#produit"
+                className="mt-4 w-full bg-stone-200 hover:bg-stone-300 text-stone-700 font-medium px-6 py-3 rounded-lg transition-colors inline-block text-center"
               >
                 Acheter
-              </button>
+              </a>
             </div>
 
             {/* Bundle */}
@@ -342,13 +337,10 @@ export default function Produits() {
                 Soit 49.95€/bougie — <span className="text-amber-600 font-medium">16% d'économie</span>
               </p>
               <div className="mt-4 p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs text-amber-800">
-                📦 Coffret cadeau luxe offert
+                Coffret cadeau luxe offert
               </div>
               <BuyButton price={99.9} variant="bundle" productId="CANDLE-BUNDLE-002" />
             </div>
-          </div>
-          <div className="mt-6 text-sm text-stone-400">
-            📊 Marge nette bundle : <strong className="text-stone-600">91.6€</strong> — 91.7% de marge
           </div>
         </div>
       </section>
@@ -393,8 +385,7 @@ export default function Produits() {
         </p>
       </footer>
 
-      {/* JSON-LD */}
-      <JSONLD data={[productSchema, faqSchema]} />
+      {/* JSON-LD enrichi — injecté par le layout via ProductJSONLD */}
     </>
   )
 }

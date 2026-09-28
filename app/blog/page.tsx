@@ -1,4 +1,4 @@
-import { JSONLD } from '@/components/JSONLD'
+import { ProductJSONLD } from '@/components/JSONLD'
 
 export const metadata = {
   title: 'Blog — CANDLE',
@@ -23,7 +23,7 @@ export default function Blog() {
         <article className="mb-10 p-6 bg-stone-50 rounded-xl border border-stone-200">
           <time className="text-amber-600 text-sm">15 septembre 2026</time>
           <h2 className="text-2xl font-serif italic mt-2">Comment choisir le parfum parfait pour un cadeau</h2>
-          <p className="mt-4 text-stone-600 leading-relaxed">Offrir une bougie parfumée, c'est offrir un moment. Mais comment choisir le parfum juste ? 95% de nos clients adorent notre parfum d'exception, mais nous vous conseillons aussi de considérer les goûts de la personne : floral pour une femme, boisé pour un homme, citrus pour un amateur de fraîcheur.</p>
+          <p className="mt-4 text-stone-600 leading-relaxed">Offrir une bougie parfumée, c'est offrir un moment. Mais comment choisir le parfum juste ? nous vous conseillons de considérer les goûts de la personne : floral pour une femme, boisé pour un homme, citrus pour un amateur de fraîcheur.</p>
         </article>
         <article className="mb-10 p-6 bg-stone-50 rounded-xl border border-stone-200">
           <time className="text-amber-600 text-sm">10 septembre 2026</time>

@@ -33,20 +33,9 @@ const productSchema = {
     name: 'CANDLE',
     url: 'https://candle-jewelry-top1.vercel.app/a-propos',
   },
-  review: {
-    '@type': 'Review',
-    reviewRating: {
-      '@type': 'Rating',
-      ratingValue: '5',
-      bestRating: '5',
-      worstRating: '1',
-    },
-    author: {
-      '@type': 'Person',
-      name: 'Sophie M.',
-    },
-    reviewBody: "La bougie est magnifique. Le bijou gravé avec le prénom de ma fille — c'est devenue un héritage. Parfum très doux.",
-  },
+  // ⚠️ Bloc Review retiré : l'avis signé « Sophie M. » était inventé.
+  // Ce fichier est importé par layout, page, blog, produits et faq — c'est
+  // lui, et non app/components/JSONLD.tsx, qui était réellement rendu.
   offers: {
     '@type': 'Offer',
     priceCurrency: 'EUR',
@@ -120,15 +109,9 @@ const bundleSchema = {
   },
 }
 
-const aggregateRatingSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'AggregateRating',
-  ratingValue: '5',
-  ratingCount: '127',
-  reviewCount: '127',
-  bestRating: '5',
-  worstRating: '1',
-}
+// ⚠️ aggregateRatingSchema supprimé : 127 avis et 5/5 annoncés pour une
+// boutique à 0 vente. Structuré trompeur — sanction Google + signalement Stripe.
+// À réactiver uniquement avec des avis réels et l'accord écrit des clients.
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -139,7 +122,7 @@ const faqSchema = {
       name: 'Quel parfum choisir pour offrir ?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: "Notre parfum d'exception est universel. Il plaît à 95% de nos clients.",
+        text: "Notre parfum d'exception est universel. S'il ne vous convient pas, contactez-nous avant de commander.",
       },
     },
     {
@@ -180,10 +163,6 @@ export function ProductJSONLD() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(bundleSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema) }}
       />
       <script
         type="application/ld+json"
